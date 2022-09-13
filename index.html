@@ -11,10 +11,36 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-    <title>Home Tab</title>
+    <title>TextApp</title>
+    <link rel="stylesheet" href="assets/css/photon.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
-    <h1>My First Electron App!</h1>
-    <p>👋</p>
+    <!-- Wrap your entire app inside .window -->
+    <div class="window">
+        <!-- .toolbar-header sits at the top of your app -->
+        <header class="toolbar toolbar-header">
+            <div class="toolbar-actions">
+                <div class="btn-group">
+                  <button class="btn btn-default">
+                    <span class="icon icon-plus"></span>
+                  </button>
+                  <button class="btn btn-default">
+                    <span class="icon icon-minus"></span>
+                  </button>
+                </div>
+            
+                <button class="btn btn-default pull-right">
+                  <span class="icon icon-download icon-text"></span>
+                  Save
+                </button>
+              </div>
+        </header>
+  
+        <!-- Your app's content goes inside .window-content -->
+        <div class="window-content">
+            <textarea></textarea>
+        </div>
+      </div>
   </body>
 </html>
