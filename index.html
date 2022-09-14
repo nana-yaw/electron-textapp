@@ -22,10 +22,10 @@
         <header class="toolbar toolbar-header">
             <div class="toolbar-actions">
                 <div class="btn-group">
-                  <button class="btn btn-default">
+                  <button class="btn btn-default" id="increaseBtn">
                     <span class="icon icon-plus"></span>
                   </button>
-                  <button class="btn btn-default">
+                  <button class="btn btn-default" id="decreaseBtn">
                     <span class="icon icon-minus"></span>
                   </button>
                 </div>
@@ -39,8 +39,9 @@
   
         <!-- Your app's content goes inside .window-content -->
         <div class="window-content">
-            <textarea></textarea>
+            <textarea id="editor"></textarea>
         </div>
       </div>
+      <script src="assets/js/editor.js"></script>
   </body>
 </html>
