@@ -21,7 +21,7 @@ const createWindow = () => {
 
     ipcMain.on('save', (event, text) => {
         if (filePath === undefined) {
-            dialog.showSaveDialog(win, {
+            dialog.showSaveDialog(mainWindow, {
                 properties: ['createDirectory', 'showOverwriteConfirmation'],
                 defaultPath: 'filename.txt'
               }).then(result => {

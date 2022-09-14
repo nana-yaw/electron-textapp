@@ -23,9 +23,15 @@ const saveText = () => {
 window.electronAPI.savedText((event, results) => {
     if (results == 'success') {
         console.log('Note saved successfully');
+        editor.style.backgroundColor = "#b2ff99"
     } else {
         console.log('Error saving text');
+        editor.style.backgroundColor = "#ff8989"
     }
+
+    setTimeout(() => {
+        editor.style.backgroundColor = ""
+    }, 1000)
 })
 
 increaseBtn.addEventListener("click", increaseText)
