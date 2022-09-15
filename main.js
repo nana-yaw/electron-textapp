@@ -4,32 +4,6 @@ const path = require('path')
 let filePath = undefined
 const isMac = process.platform === 'darwin'
 
-const menuTemplate = [
-    ...(isMac ? [{
-        label: app.name,
-        submenu: [
-          { role: 'about' },
-          { type: 'separator' },
-          { role: 'quit' }
-        ]
-      }] : []),
-    {
-        label: "File",
-        submenu: [
-            {
-                label: "Save",
-                click: () => {console.log('save from menu');}
-            },
-            {
-                label: "Save As",
-                click: () => {console.log('save as from menu');}
-            },
-        ]
-    },
-
-    {role: "editMenu"}
-]
-
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
         webPreferences: {
@@ -66,6 +40,39 @@ const createWindow = () => {
     })
 
     mainWindow.loadFile('index.html')
+
+    const menuTemplate = [
+        ...(isMac ? [{
+            label: app.name,
+            submenu: [
+              { role: 'about' },
+              { type: 'separator' },
+              { role: 'quit' }
+            ]
+          }] : []),
+        {
+            label: "File",
+            submenu: [
+                {
+                    label: "Save",
+                    click: () => {
+                        mainWindow.webContents.send('saved-clicked')
+                    }
+                },
+                {
+                    label: "Save As",
+                    click: () => {
+                        console.log('save as from menu')
+                        filePath = undefined
+                        mainWindow.webContents.send('saved-clicked')
+                    }
+                },
+            ]
+        },
+    
+        { role: "editMenu" },
+        { role: "viewMenu" }
+    ]
     const menu = Menu.buildFromTemplate(menuTemplate)
     Menu.setApplicationMenu(menu)
 }

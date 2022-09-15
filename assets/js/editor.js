@@ -19,7 +19,7 @@ const saveText = () => {
     window.electronAPI.saveText(text)
 }
 
-// Handle message from Main process
+// Handle 'saved' message from Main process
 window.electronAPI.savedText((event, results) => {
     if (results == 'success') {
         console.log('Note saved successfully');
@@ -32,6 +32,11 @@ window.electronAPI.savedText((event, results) => {
     setTimeout(() => {
         editor.style.backgroundColor = ""
     }, 1000)
+})
+
+// Handle click 'save' menu item from Main process
+window.electronAPI.clickSaveMenuItem((event, _) => {
+    saveText()
 })
 
 increaseBtn.addEventListener("click", increaseText)
