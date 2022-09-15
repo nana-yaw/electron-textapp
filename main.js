@@ -1,7 +1,34 @@
 const fs = require('fs')
-const {app, BrowserWindow, ipcMain, dialog} = require('electron')
+const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron')
 const path = require('path')
 let filePath = undefined
+const isMac = process.platform === 'darwin'
+
+const menuTemplate = [
+    ...(isMac ? [{
+        label: app.name,
+        submenu: [
+          { role: 'about' },
+          { type: 'separator' },
+          { role: 'quit' }
+        ]
+      }] : []),
+    {
+        label: "File",
+        submenu: [
+            {
+                label: "Save",
+                click: () => {console.log('save from menu');}
+            },
+            {
+                label: "Save As",
+                click: () => {console.log('save as from menu');}
+            },
+        ]
+    },
+
+    {role: "editMenu"}
+]
 
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
@@ -39,6 +66,8 @@ const createWindow = () => {
     })
 
     mainWindow.loadFile('index.html')
+    const menu = Menu.buildFromTemplate(menuTemplate)
+    Menu.setApplicationMenu(menu)
 }
 
 app.whenReady().then(() => {
