@@ -55,18 +55,21 @@ const createWindow = () => {
             submenu: [
                 {
                     label: "Save",
+                    accelerator: 'CmdOrCtrl+S',
                     click: () => {
                         mainWindow.webContents.send('saved-clicked')
                     }
                 },
                 {
                     label: "Save As",
+                    accelerator: 'CmdOrCtrl+Shift+S',
                     click: () => {
                         console.log('save as from menu')
                         filePath = undefined
                         mainWindow.webContents.send('saved-clicked')
                     }
                 },
+                { role: 'quit' }
             ]
         },
     
